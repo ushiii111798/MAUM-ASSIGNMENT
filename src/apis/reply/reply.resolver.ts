@@ -61,7 +61,6 @@ export class ReplyResolver {
     });
   }
 
-  @Query(() => [Reply])
   @UseGuards(GqlAuthAccessGuard)
   @Mutation(() => Reply)
   async updateReply(
