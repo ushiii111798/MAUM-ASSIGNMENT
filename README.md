@@ -53,7 +53,7 @@ $ docker-compose version
 - Note that your server is running at port 4000 if no changes on ENV(SERVER_PORT)
 - Your database is running at port 5432 (DEFAUTL ID AND PASSWORD IS 'postgres')
 - If you want to change Database's user ID or Password, please change ENV value of DB_USER and DB_PASS (DB_NAME shoud never be changed)
--
+
 
 # 구현 API 목록
 
@@ -61,30 +61,30 @@ $ docker-compose version
 
 ### Queries
 
-fetchMember - 로그인된 유저의 정보 조회
-fetchBoardDetail - 게시글 정보 조회
-fetchMyBoardList - 로그인된 유저가 올린 게시글 리스트 조회
-fetchBoardList - 전체 게시글 리스트 조회
-searchBoardList - 게시글 검색
-fetchMyReplies - 내 댓글 검색
-fetchRepliesByBoardId - 게시글 별 댓글 조회
-fetchSlaveReplies - 댓글 별 대댓글 조회
+- fetchMember - 로그인된 유저의 정보 조회
+- fetchBoardDetail - 게시글 정보 조회
+- fetchMyBoardList - 로그인된 유저가 올린 게시글 리스트 조회
+- fetchBoardList - 전체 게시글 리스트 조회
+- searchBoardList - 게시글 검색
+- fetchMyReplies - 내 댓글 검색
+- fetchRepliesByBoardId - 게시글 별 댓글 조회
+- fetchSlaveReplies - 댓글 별 대댓글 조회
 
 ### Mutations
 
-login - 로그인 기능
-logout - 로그아웃 기능
-restore - accessToken 만료시 refreshToken으로 재발급 기능
-createMember - 회원가입
-updatePassword - 회원정보 수정 (비밀번호 변경)
-updateEmail - 회원정보 수정 (이메일 변경)
-deleteMember - 회원 탈퇴
-createBoard - 게시글 작성
-updateBoard - 게시글 수정
-deleteBoard - 게시글 삭제
-createReply - 댓글 작성
-updateReply - 댓글 수정
-deleteReply - 댓글 삭제
+- login - 로그인 기능
+- logout - 로그아웃 기능
+- restore - accessToken 만료시 refreshToken으로 재발급 기능
+- createMember - 회원가입
+- updatePassword - 회원정보 수정 (비밀번호 변경)
+- updateEmail - 회원정보 수정 (이메일 변경)
+- deleteMember - 회원 탈퇴
+- createBoard - 게시글 작성
+- updateBoard - 게시글 수정
+- deleteBoard - 게시글 삭제
+- createReply - 댓글 작성
+- updateReply - 댓글 수정
+- deleteReply - 댓글 삭제
 
 # ERD
 
