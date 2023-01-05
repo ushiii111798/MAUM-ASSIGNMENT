@@ -1,0 +1,105 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Member {
+  id: String!
+  email: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Board {
+  id: String!
+  title: String!
+  content: String!
+  member: Member!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+type Reply {
+  id: String!
+  type: REPLY_TYPE!
+  masterReply: Reply
+  member: Member!
+  content: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+enum REPLY_TYPE {
+  MASTER
+  SLAVE
+}
+
+type Query {
+  """fetching login user detail"""
+  fetchMember: Member!
+  fetchBoardDetail(boardId: String!): Board!
+  fetchMyBoardList: [Board!]!
+  fetchBoardList: [Board!]!
+  searchBoardList(keyword: String!): [Board!]!
+  fetchMyReplies: [Reply!]!
+
+  """fetch master replies by board id"""
+  fetchRepliesByBoardId(boardId: String!): [Reply!]!
+  fetchSlaveReplies(masterReplyId: String!): [Reply!]!
+  updateReply(replyId: String!, content: String!): [Reply!]!
+}
+
+type Mutation {
+  login(email: String!, password: String!): String!
+  logout: String!
+
+  """restore access token"""
+  restore: String!
+
+  """create new member"""
+  createMember(email: String!, password: String!): Member!
+
+  """
+  update login user password / require previous password as prev and new password as next
+  """
+  updatePassword(
+    """previous password"""
+    prev: String!
+
+    """new password"""
+    next: String!
+  ): Member!
+  updateEmail(
+    """previous email"""
+    prev: String!
+
+    """new email"""
+    next: String!
+  ): Member!
+
+  """delete login user / automatic logout"""
+  deleteMember: Boolean!
+  createBoard(title: String!, content: String!): Board!
+  updateBoard(boardId: String!, title: String, content: String): Board!
+  deleteBoard(boardId: String!): Boolean!
+  createReply(
+    content: String!
+    boardId: String!
+
+    """
+    if you are creating primary reply, type is not necessary(if entered =MASTER), but if you are creating secondary reply, type is necessary(=SLAVE)
+    """
+    type: String
+
+    """this is only needed when reply type is SLAVE"""
+    masterReplyId: String
+  ): Reply!
+  updateReply(replyId: String!, content: String!): Reply!
+  deleteReply(replyId: String!): Boolean!
+}
